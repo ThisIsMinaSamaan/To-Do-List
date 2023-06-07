@@ -17,7 +17,7 @@ const addTask = function () {
 
 const validate = function (task) {
   if(task.name.trim() == "") return false;
-  if(task.priority < 1) return false;
+  if(task.priority < 1 || task.priority > 10) return false;
   return true;
 };
 
@@ -75,8 +75,16 @@ const cancel = (i) => {
 };
 
 const save = (i) => {
-  tasks[i].name = document.getElementById(`name_${i}`).value;
-  tasks[i].priority = document.getElementById(`priority_${i}`).value;
+  let updatedName = document.getElementById(`name_${i}`).value;
+  let updatedPriority = document.getElementById(`priority_${i}`).value;
+  let updatedTask = {name: updatedName, priority: updatedPriority};
+  const isValid = validate(updatedTask);
+  if(isValid == false){ 
+    alert("Enter Valid Data");
+    return;
+  }
+  tasks[i].name = updatedName;
+  tasks[i].priority = updatedPriority;
   tasks[i].editMode = false;
   renderTaskRow(i);
 };
