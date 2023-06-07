@@ -7,6 +7,7 @@ const addTask = function () {
  
   const isValid = validate(task);
   if(isValid == false){ 
+    alert("Enter Valid Data");
     return;
   }
 
@@ -14,8 +15,9 @@ const addTask = function () {
   loadTable();
 };
 
-const validate = function () {
-  //code goes here
+const validate = function (task) {
+  if(task.name.trim() == "") return false;
+  if(task.priority < 1) return false;
   return true;
 };
 
@@ -63,7 +65,7 @@ const getRowContent = (i, task) => {
         ? `<button onclick="save(${i})">Save</button><button onclick="cancel(${i})">Cancel</button>`
         : `<button onclick="editTask(${i})">Edit</button>`
     }</td>
-    <td><button onclick="deleteTask(${i})">Delete</button></td>
+    <td><button onclick="delTask(${i})">Delete</button></td>
     </tr>`;
 };
 
@@ -92,16 +94,3 @@ const getHighestPriority = () => {
   tasks.sort((a, b) => a.priority - b.priority );
   loadTable();
 };
-
-
-// `<tr><td>${i + 1}</td>
-// <td>${task.name.trim()}</td>
-// <td>${task.priority}</td>
-// <td><button onclick="editTask()">Edit</button></td>
-// <td><button onclick="delTask()">Delete</button></td></tr>`;
-
-// `<tr><td>${i + 1}</td>
-//               <td><input id="name_${i}" value="${task.name}" /></td>
-//               <td><input id="priority_${i}" value="${task.priority}" /></td>
-//               <td><button onclick="save(${i})">Save</button><button onclick="cancel(${i})">Cancel</button></td>
-//               <td><button onclick="delTask()">Delete</button></td></tr>`;
