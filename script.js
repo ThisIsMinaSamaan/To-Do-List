@@ -17,7 +17,7 @@ const addTask = function () {
 
 const validate = function (task) {
   if(task.name.trim() == "") return false;
-  if(task.priority < 1 || task.priority > 10) return false;
+  if(task.priority < 1 || task.priority > 10 || isNaN(task.priority)) return false;
   return true;
 };
 
