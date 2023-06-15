@@ -1,9 +1,19 @@
 const tasks = [];
 
+class Task {
+  name;
+  priority;
+
+  constructor(name, priority){
+    this.name = name;
+    this.priority = priority;
+  }
+}
+
 const addTask = function () {
   const taskName = document.getElementById("taskName").value;
   const priority = document.getElementById("priority").value;
-  const task = {name: taskName, priority: priority};
+  const task = new Task(taskName,  priority);
  
   const isValid = validate(task);
   if(isValid == false){ 
